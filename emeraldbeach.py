@@ -19,8 +19,13 @@ def calculate_costs(data):
     guest_list = []
     for guest_data in data:
         room_code = guest_data[0]
-        num_nights = int(guest_data[1])
+        num_nights_str = guest_data[1]
 
+        try:
+            num_nights = int(num_nights_str)
+        except ValueError:
+            print(f"Invalid value for number of nights: {num_nights_str} for room {room_code}")
+            continue
 
         if room_code in room_rates:
             room_rate = room_rates[room_code]
